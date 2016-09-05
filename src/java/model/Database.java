@@ -88,7 +88,7 @@ public class Database {
             list = new ArrayList<Map<String, Object>>();
             PreparedStatement pstmt = connect.prepareStatement(sql);
             for (int i = 0; i < args.length; i++) {
-                pstmt.setObject(i + i, args[1]);
+                pstmt.setObject(i + 1, args[1]);
             }
             ResultSet rs = pstmt.executeQuery();
             ResultSetMetaData md = rs.getMetaData();
