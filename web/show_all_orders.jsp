@@ -13,8 +13,9 @@
         <title>รายการจัดซื้อ</title>
     </head>
     <body>
-        <b>รายการสั่งซื้อ</b><br/>
+        <b>รายการสั่งซื้อ</b><br/><br/>
         <a href="index.jsp">กลับไป</a>
+        <br/><br/>
         <table border="1" width="760">
             <thead>
                 <tr>

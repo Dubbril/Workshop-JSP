@@ -41,7 +41,10 @@ public class OrderTable {
                     (String) row.get("activate_code"),
                     (Date) row.get("register_date"));
             Order order;
-            order = new Order((Integer) row.get("id"), m, (Date) row.get("date"), (String) row.get("shipping_address"));
+            order = new Order((Integer) row.get("id"),
+                    m,
+                    (Date) row.get("date"),
+                    (String) row.get("shipping_address"));
             list.add(order);
         }
         return list;
