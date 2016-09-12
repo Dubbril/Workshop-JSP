@@ -1,0 +1,23 @@
+/* tag */
+body,form{
+    margin: 0;
+    padding: 0;
+}
+hr{
+    clear: both;
+}
+/* id */
+#header,#nav,#content,#footer{
+    padding: 0.5em 1em 0em 1em; /* emphasize */
+}
+#nav{
+    float: left;
+    width: 8em;
+}
+#content{
+    float: left;
+}
+#footer{
+    clear: both;
+    text-align: center; 
+}
