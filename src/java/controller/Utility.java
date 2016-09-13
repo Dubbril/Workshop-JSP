@@ -2,6 +2,7 @@ package controller;
 
 import java.io.UnsupportedEncodingException;
 import java.util.Random;
+import javax.mail.MessagingException;
 
 class Utility {
 
@@ -27,6 +28,20 @@ class Utility {
     }
 
     static void sendMail(String from, String to, String subject, String body) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        sendMail(from, to, "", "", subject, body);
+    }
+
+    public static void sendMail(String from, String to, String cc, String bcc, String subject, String body) {
+        try {
+            Email email = new Email();
+            Htmlmessage msg = new Htmlmessage();
+            msg.addHtml(body);
+            email.setFromAddress(from);
+            email.setToAddress(body);
+            email.setSubject(subject);
+            email.send(msg);
+        } catch (MessagingException ex) {
+            throw new RuntimeException(ex.getMessage());
+        }
     }
 }
