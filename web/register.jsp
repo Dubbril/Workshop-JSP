@@ -4,17 +4,17 @@
 <html>
     <head>
         <title>${initParam.shopname} - ลงทะเบียนผู้เข้าใช้</title>
-        <link rel="stylesheet" href="../css/view.css" type="text/css"/>
+        <link rel="stylesheet" href="css/view.css" type="text/css"/>
     </head>
     <body>
         <div id="header">
-            <%@include file="/templates/header.jsp" %>
+            <%@include file="templates/header.jsp" %>
         </div>
         <div id="nav">
-            <%@include file="/templates/navigation.jsp" %>
+            <%@include file="templates/navigation.jsp" %>
         </div>
         <div id="content" >
-            <b>ลงทะเบียนผู้เข้าใช้</b>
+            <b>ลงทะเบียนผู้เข้าใช้</b><br/><br/>
             <form action="Register" method="POST">
                 <table width="400">
                     <tbody>
@@ -30,6 +30,16 @@
                         </tr>
                         <tr>
                             <td>รหัสผ่าน</td>
+                            <td>
+                                <input type="password" name="confirm" value="${param.confirm}"/>
+                                <c:if test="not empty errors.password">
+                                    <br/>
+                                    <font color="#ff0000">${param.confirm}</font>
+                                </c:if>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>ยืนยันรหัสผ่าน</td>
                             <td>
                                 <input type="password" name="password" value="${param.password}"/>
                                 <c:if test="not empty errors.password">
@@ -78,7 +88,7 @@
             </form>
         </div>
         <div id="footer">
-            <%@include file="/templates/footer.jsp" %>
+            <%@include file="templates/footer.jsp" %>
         </div>
     </body>
 </html>
