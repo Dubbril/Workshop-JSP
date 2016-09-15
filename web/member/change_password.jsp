@@ -5,8 +5,15 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>${initParam.shopname} - เปลี่ยนรหัสผ่าน</title>
+        <link rel="stylesheet" href="../css/view.css" type="text/css"/>
     </head>
     <body>
+        <div id="header">
+            <%@include file="../templates/header.jsp" %>
+        </div>
+        <div id="nav">
+            <%@include file="../templates/navigation.jsp" %>
+        </div>
         <div id="content">
             <b>เปลี่ยนรหัสผ่าน</b><br/><br/>
             <form action="ChangePassword" method="POST">
@@ -24,7 +31,7 @@
                         <tr>
                             <td>รหัสผ่านใหม่</td>
                             <td>
-                                <input type="password" name="new" value="${param.new}" />
+                                 <input type="password" name="New" value="${param.New}" /> 
                             </td>
                         </tr>
                         <tr>
@@ -44,6 +51,9 @@
                     </tbody>
                 </table>
             </form>
+        </div>
+        <div id="footer">
+            <%@include file="../templates/footer.jsp" %>
         </div>
     </body>
 </html>
