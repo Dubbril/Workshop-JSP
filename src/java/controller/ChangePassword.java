@@ -10,38 +10,40 @@ import javax.servlet.http.HttpSession;
 import model.Database;
 import model.Member;
 import model.MemberTable;
-import model.ShoppingCart;
 
-public class Login extends HttpServlet {
+public class ChangePassword extends HttpServlet {
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
 
-        String username = request.getParameter("username");
-        String password = request.getParameter("password");
+        String oldPassword = request.getParameter("old");
+        String newPassword = request.getParameter("new");
+        String confirmPassword = request.getParameter("confirm");
 
+        if (!newPassword.equals(confirmPassword)) {
+            request.setAttribute("confirmIncorrect", "รหัสผ่านไม่ตรงกัน");
+            RequestDispatcher rd;
+            rd = request.getRequestDispatcher("change_password.jsp");
+            rd.forward(request, response);
+            return;
+        }
         HttpSession session = request.getSession();
-        Database db = new Database();
-        MemberTable memberTable = new MemberTable(db);
-        Member member = memberTable.findByUP(username, password);
-        db.close();
-
-        if (member != null && member.isActivated()) {
-            ShoppingCart cart = (ShoppingCart) session.getAttribute("cart");
-            session.setAttribute("member", member);
-            if (cart != null & cart.getItems().size() > 0) {
-                response.sendRedirect("shop/shipping.jsp");
-            } else {
-                response.sendRedirect("shop/index.jsp");
-            }
+        Member member = (Member) session.getAttribute("member");
+        boolean oldMatch = (member.getPassword().endsWith(oldPassword));
+        if (oldMatch) {
+            Database db = new Database();
+            MemberTable memberTable = new MemberTable(db);
+            member.setPassword(newPassword);
+            memberTable.update(member);
+            db.close();
+        }
+        if (oldMatch) {
+            response.sendRedirect("change_password_complete.jsp");
         } else {
-            if (member == null) {
-                request.setAttribute("loginIncorrect", "ชื่อผู้ใช้หรือรหัสผ่านไม่ถูกต้อง");
-            } else {
-                request.setAttribute("loginIncorrect", "บัญชียังไม่ผ่านการยืนยัน");
-            }
-            RequestDispatcher rd = request.getRequestDispatcher("/member/login.jsp");
+            request.setAttribute("oldIncorrect", "รหัสสมาชิก");
+            RequestDispatcher rd;
+            rd = request.getRequestDispatcher("chage_password.jsp");
             rd.forward(request, response);
         }
 

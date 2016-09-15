@@ -8,14 +8,14 @@
         <td align="right">
             <c:choose>
                 <c:when test="${empty number}">
-                    <a href="../number/login.jsp">ลงชื่อเข้าใช้</a>
-                    <a href="../number/register.jsp">สมัครสมาชิก</a>
-                    <a href="../number/forgot_password.jsp">ลืมรหัสผ่าน</a>
+                    <a href="../member/login.jsp">ลงชื่อเข้าใช้</a>
+                    <a href="../member/register.jsp">สมัครสมาชิก</a>
+                    <a href="../member/forgot_password.jsp">ลืมรหัสผ่าน</a>
                 </c:when>
                 <c:otherwise>
                     คุณ ${Number.name}
-                    <a href="../number/change_password.jsp">เปลี่ยนรหัสผ่าน</a>
-                    <a href="../number/Logout">ลงชื่อออก</a>
+                    <a href="../member/change_password.jsp">เปลี่ยนรหัสผ่าน</a>
+                    <a href="../member/Logout">ลงชื่อออก</a>
                 </c:otherwise>
             </c:choose>      
         </td>

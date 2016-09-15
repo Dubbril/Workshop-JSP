@@ -5,8 +5,15 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>${initParam.showName} - ลงชื่อเข้าใช้</title>
+        <link rel="stylesheet" href="../css/view.css" type="text/css"/>
     </head>
     <body>
+        <div id="header">
+            <%@include file="../templates/header.jsp" %>
+        </div>
+        <div id="nav">
+            <%@include file="../templates/navigation.jsp" %>
+        </div>
         <div id="content">
             <b>ลงชื่อเข้าใช้</b>
             <form action="Login" method="POST">
@@ -18,7 +25,7 @@
                         </tr>
                         <tr>
                             <td>รหัสผ่าน</td>
-                            <td><input type="text" name="password" value="${param.password}"/> </td>
+                            <td><input type="password" name="password" value="${param.password}"/> </td>
                         </tr>
                         <tr>
                             <td colspan="2" align="center" ><input type="submit" value="ลงชื่อเข้าใช้"/></td>
@@ -29,6 +36,9 @@
             <c:if test="${not empty loginIncorrect}">
                 <font color="#FF0000">${loginIncorrect}</font>
             </c:if>          
+        </div>
+        <div id="footer">
+            <%@include file="../templates/footer.jsp" %>
         </div>
     </body>
 </html>

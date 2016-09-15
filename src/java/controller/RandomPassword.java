@@ -6,43 +6,36 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 import model.Database;
 import model.Member;
 import model.MemberTable;
-import model.ShoppingCart;
 
-public class Login extends HttpServlet {
+public class RandomPassword extends HttpServlet {
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
 
-        String username = request.getParameter("username");
-        String password = request.getParameter("password");
-
-        HttpSession session = request.getSession();
+        int id = Integer.parseInt(request.getParameter("id"));
+        String activateCode = request.getParameter("activate_code");
         Database db = new Database();
         MemberTable memberTable = new MemberTable(db);
-        Member member = memberTable.findByUP(username, password);
+        Member member = memberTable.findByid(id);
+
+        if (member != null && member.getActivatedCode().equals(activateCode)) {
+            String password = Utility.randomText(8);
+            member.setPassword(password);
+            memberTable.update(member);
+        }
         db.close();
 
-        if (member != null && member.isActivated()) {
-            ShoppingCart cart = (ShoppingCart) session.getAttribute("cart");
-            session.setAttribute("member", member);
-            if (cart != null & cart.getItems().size() > 0) {
-                response.sendRedirect("shop/shipping.jsp");
-            } else {
-                response.sendRedirect("shop/index.jsp");
-            }
-        } else {
-            if (member == null) {
-                request.setAttribute("loginIncorrect", "ชื่อผู้ใช้หรือรหัสผ่านไม่ถูกต้อง");
-            } else {
-                request.setAttribute("loginIncorrect", "บัญชียังไม่ผ่านการยืนยัน");
-            }
-            RequestDispatcher rd = request.getRequestDispatcher("/member/login.jsp");
+        if (member != null && member.getActivatedCode().equals(activateCode)) {
+            request.setAttribute("member", member);
+            RequestDispatcher rd;
+            rd = request.getRequestDispatcher("forgot_password_complete.jsp");
             rd.forward(request, response);
+        } else {
+            response.sendRedirect("forgot_password_failed.jsp");
         }
 
     }

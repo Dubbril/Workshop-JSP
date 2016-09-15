@@ -4,14 +4,14 @@
 <html>
     <head>
         <title>${initParam.shopname} - ลงทะเบียนผู้เข้าใช้</title>
-        <link rel="stylesheet" href="css/view.css" type="text/css"/>
+        <link rel="stylesheet" href="../css/view.css" type="text/css"/>
     </head>
     <body>
         <div id="header">
-            <%@include file="templates/header.jsp" %>
+            <%@include file="../templates/header.jsp" %>
         </div>
         <div id="nav">
-            <%@include file="templates/navigation.jsp" %>
+            <%@include file="../templates/navigation.jsp" %>
         </div>
         <div id="content" >
             <b>ลงทะเบียนผู้เข้าใช้</b><br/><br/>
@@ -88,7 +88,7 @@
             </form>
         </div>
         <div id="footer">
-            <%@include file="templates/footer.jsp" %>
+            <%@include file="../templates/footer.jsp" %>
         </div>
     </body>
 </html>
