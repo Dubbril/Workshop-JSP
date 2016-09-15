@@ -48,6 +48,14 @@
         <servlet-name>Register</servlet-name>
         <servlet-class>controller.Register</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>Active</servlet-name>
+        <servlet-class>controller.Active</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>Login</servlet-name>
+        <servlet-class>controller.Login</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>AddBook</servlet-name>
         <url-pattern>/AddBook</url-pattern>
@@ -87,6 +95,14 @@
     <servlet-mapping>
         <servlet-name>Register</servlet-name>
         <url-pattern>/Register</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Active</servlet-name>
+        <url-pattern>/Active</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Login</servlet-name>
+        <url-pattern>/Login</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
