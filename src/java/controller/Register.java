@@ -41,9 +41,9 @@ public class Register extends HttpServlet {
         if (address.trim().length() == 0) {
             errors.put("address", "กรุณากรอกที่อยู่");
         }
-        if (!email.matches("\\s+@\\s+\\.\\s{2,3}")) {
-            errors.put("email", "กรุณากรอกอีเมลให้ถูกต้อง");
-        }
+//        if (!email.matches("\\s+@\\s+\\.\\s{2,3}")) {
+//            errors.put("email", "กรุณากรอกอีเมลให้ถูกต้อง");
+//        }
         if (errors.size() > 0) {
             request.setAttribute("errors", errors);
             RequestDispatcher rd;
@@ -60,18 +60,18 @@ public class Register extends HttpServlet {
         if (memberTable.add(member)) {
             memberTable.deleteUnactivated();
         } else {
-            errors.put("username", "ชื่อผุ้ใช้ซ้ำ");
+            errors.put("username", "ชื่อผู้ใช้ซ้ำ");
         }
         db.close();
         if (errors.size() == 0) {
-            String from = "no-reply@wannik.com";
+            String from = "mail.dubbril.com";
             String to = member.getEmail();
             String subject = "ยืนยันการลงทะเบียน";
             String body = "คุณได้ลงทะเบียนกับเรา<br/>"
                     + "โปรดยืนยันการลงทะเบียนโดยคลิ๊ก"
                     + "<b><a href='"
-                    + "http://localhost:8084"
-                    + "BookShop/member/Activate"
+                    + "http://localhost:8080"
+                    + "BookShop/member/Active"
                     + "?id=" + member.getId()
                     + "&activate_code=" + member.getActivatedCode()
                     + "'>ที่นี่</a></b>";

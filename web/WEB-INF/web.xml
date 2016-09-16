@@ -114,11 +114,11 @@
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>Register</servlet-name>
-        <url-pattern>/Register</url-pattern>
+        <url-pattern>/member/Register</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>Active</servlet-name>
-        <url-pattern>/Active</url-pattern>
+        <url-pattern>/member/Active</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>Logout</servlet-name>

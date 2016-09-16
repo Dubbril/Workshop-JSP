@@ -26,7 +26,7 @@ public class Active extends HttpServlet {
         }
         db.close();
         if (member != null & member.getActivatedCode().equals(activateCode)) {
-            response.sendRedirect("register_completed.jsp");
+            response.sendRedirect("register_almost_complete.jsp");
         } else {
             response.sendRedirect("register_failed.jsp");
         }

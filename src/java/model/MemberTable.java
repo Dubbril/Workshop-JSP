@@ -14,7 +14,7 @@ public class MemberTable {
     public void deleteUnactivated() {
         String sql = "delete from member "
                 + " where activated=0 "
-                + " and datediff(curdate(),regsister_date)>7";
+                + " and datediff(curdate(),register_date)>7";
         db.update(sql);
     }
 
@@ -66,7 +66,7 @@ public class MemberTable {
                     (String) result.get("name"),
                     (String) result.get("address"),
                     (String) result.get("email"),
-                    (Boolean) result.get("acitvated"),
+                    (Boolean) result.get("activated"),
                     (String) result.get("activate_code"),
                     (Date) result.get("register_date"));
         } else {
