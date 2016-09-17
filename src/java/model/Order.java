@@ -16,6 +16,10 @@ public class Order {
         this.shippingAddress = shippingAddress;
     }
 
+    public Order(Member member, Date date, String shippingAddress) {
+        this(0, member, date, shippingAddress);
+    }
+
     public int getId() {
         return id;
     }

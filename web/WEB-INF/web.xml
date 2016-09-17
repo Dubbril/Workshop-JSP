@@ -88,6 +88,22 @@
         <servlet-name>AddToCart</servlet-name>
         <servlet-class>controller.AddToCart</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ShowCart</servlet-name>
+        <servlet-class>controller.ShowCart</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>UpdateCart</servlet-name>
+        <servlet-class>controller.UpdateCart</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>Shipping</servlet-name>
+        <servlet-class>controller.Shipping</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ConfirmOrder</servlet-name>
+        <servlet-class>controller.ConfirmOrder</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>AddBook</servlet-name>
         <url-pattern>/AddBook</url-pattern>
@@ -167,6 +183,22 @@
     <servlet-mapping>
         <servlet-name>AddToCart</servlet-name>
         <url-pattern>/AddToCart</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ShowCart</servlet-name>
+        <url-pattern>/ShowCart</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>UpdateCart</servlet-name>
+        <url-pattern>/UpdateCart</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Shipping</servlet-name>
+        <url-pattern>/Shipping</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ConfirmOrder</servlet-name>
+        <url-pattern>/ConfirmOrder</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
