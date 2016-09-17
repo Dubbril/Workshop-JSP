@@ -1,49 +1,39 @@
 package controller;
 
 import java.io.IOException;
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import model.Book;
+import model.BookTable;
 import model.Database;
-import model.Member;
-import model.MemberTable;
+import model.Item;
 import model.ShoppingCart;
 
-public class Login extends HttpServlet {
+public class AddToCart extends HttpServlet {
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-
-        String username = request.getParameter("username");
-        String password = request.getParameter("password");
+        int id = Integer.parseInt(request.getParameter("id"));
+        int amount = Integer.parseInt(request.getParameter("amount"));
 
         HttpSession session = request.getSession();
-        Database db = new Database();
-        MemberTable memberTable = new MemberTable(db);
-        Member member = memberTable.findByUP(username, password);
-        db.close();
+        ShoppingCart cart = (ShoppingCart) session.getAttribute("cart");
 
-        if (member != null && member.isActivated()) {
-            ShoppingCart cart = (ShoppingCart) session.getAttribute("cart");
-            session.setAttribute("member", member);
-            if (cart != null && cart.getItems().size() > 0) {
-                response.sendRedirect("../shop/shipping.jsp");
-            } else {
-                response.sendRedirect("../shop/index.jsp");
-            }
-        } else {
-            if (member == null) {
-                request.setAttribute("loginIncorrect", "ชื่อผู้ใช้หรือรหัสผ่านไม่ถูกต้อง");
-            } else {
-                request.setAttribute("loginIncorrect", "บัญชียังไม่ผ่านการยืนยัน");
-            }
-            RequestDispatcher rd = request.getRequestDispatcher("/member/login.jsp");
-            rd.forward(request, response);
+        if (cart == null) {
+            cart = new ShoppingCart();
+            session.setAttribute("cart", cart);
         }
+        Database db = new Database();
+        BookTable bookTable = new BookTable(db);
+        Book book = bookTable.findById(id);
+        Item item = new Item(book, amount);
+        cart.add(item);
+        db.close();
+        response.sendRedirect("ShowCart");
 
     }
 

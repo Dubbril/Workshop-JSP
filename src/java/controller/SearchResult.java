@@ -1,49 +1,42 @@
 package controller;
 
 import java.io.IOException;
+import java.util.List;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
+import model.Book;
+import model.BookTable;
 import model.Database;
-import model.Member;
-import model.MemberTable;
-import model.ShoppingCart;
+import model.Page;
 
-public class Login extends HttpServlet {
+public class SearchResult extends HttpServlet {
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-
-        String username = request.getParameter("username");
-        String password = request.getParameter("password");
-
-        HttpSession session = request.getSession();
+        String keyword = (request.getParameter("keyword") != null
+                ? request.getParameter("keyword") : "");
+        int pageNo = (request.getParameter("page_no") != null
+                && request.getParameter("page_no").length() > 0
+                        ? Integer.parseInt(request.getParameter("page_no")) : 0);
+        int ITEM_PER_PAGE = 5;
         Database db = new Database();
-        MemberTable memberTable = new MemberTable(db);
-        Member member = memberTable.findByUP(username, password);
+        BookTable bookTable = new BookTable(db);
+        int numRecord = bookTable.getSize();
+        Page page = new Page(numRecord, pageNo, ITEM_PER_PAGE);
+        List<Book> result = bookTable.findByKeyword(keyword, page.getFromIndex(), ITEM_PER_PAGE);
+        int pageCount = page.size();
         db.close();
-
-        if (member != null && member.isActivated()) {
-            ShoppingCart cart = (ShoppingCart) session.getAttribute("cart");
-            session.setAttribute("member", member);
-            if (cart != null && cart.getItems().size() > 0) {
-                response.sendRedirect("../shop/shipping.jsp");
-            } else {
-                response.sendRedirect("../shop/index.jsp");
-            }
-        } else {
-            if (member == null) {
-                request.setAttribute("loginIncorrect", "ชื่อผู้ใช้หรือรหัสผ่านไม่ถูกต้อง");
-            } else {
-                request.setAttribute("loginIncorrect", "บัญชียังไม่ผ่านการยืนยัน");
-            }
-            RequestDispatcher rd = request.getRequestDispatcher("/member/login.jsp");
-            rd.forward(request, response);
-        }
+        request.setAttribute("result", result);
+        request.setAttribute("pageCount", pageCount);
+        request.getSession().setAttribute("keyword", keyword);
+        request.getSession().setAttribute("pageNo", pageNo);
+        RequestDispatcher rd;
+        rd = request.getRequestDispatcher("search_result.jsp");
+        rd.forward(request, response);
 
     }
 
