@@ -18,16 +18,18 @@
             <table width="500">
                 <tr>
                     <td rowspan="3"><img src="../images/${book.id}.gif" /> </td>
+                    <td>${book.title}</td>
                 </tr>
                 <tr>
                     <td>${book.authors}</td>
                 </tr>
                 <tr>
-                    <td>${book.price}</td>
+                    <td>${book.price} บาท</td>
                 </tr>
             </table>
             <br/>
-            <form method="POST">
+            <form action="AddToCart" method="POST">
+                ต้องการสั่งซื้อเป็นจำนวน
                 <input type="text" name="amount" value="1" size="2" style="text-align: right" />เล่ม
                 <input type="hidden" name="id" value="${book.id}" />
                 <input type="submit" value="ใส่ตะกร้า" />

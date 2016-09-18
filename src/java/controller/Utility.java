@@ -46,6 +46,13 @@ class Utility {
     }
 
     static boolean isNumber(String string) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        try {
+            int d = Integer.parseInt(string);
+        } catch (NumberFormatException ex) {
+
+            return false;
+
+        }
+        return true;
     }
 }

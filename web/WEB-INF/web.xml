@@ -149,14 +149,6 @@
         <url-pattern>/member/Active</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>Logout</servlet-name>
-        <url-pattern>/Logout</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>ChangePassword</servlet-name>
-        <url-pattern>/ChangePassword</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
         <servlet-name>ForgotPassword</servlet-name>
         <url-pattern>/ForgotPassword</url-pattern>
     </servlet-mapping>
@@ -174,23 +166,7 @@
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>SearchResult</servlet-name>
-        <url-pattern>/SearchResult</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>ShowBook</servlet-name>
-        <url-pattern>/ShowBook</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>AddToCart</servlet-name>
-        <url-pattern>/AddToCart</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>ShowCart</servlet-name>
-        <url-pattern>/ShowCart</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>UpdateCart</servlet-name>
-        <url-pattern>/UpdateCart</url-pattern>
+        <url-pattern>/shop/SearchResult</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>Shipping</servlet-name>
@@ -199,6 +175,30 @@
     <servlet-mapping>
         <servlet-name>ConfirmOrder</servlet-name>
         <url-pattern>/ConfirmOrder</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Logout</servlet-name>
+        <url-pattern>/member/Logout</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ChangePassword</servlet-name>
+        <url-pattern>/member/ChangePassword</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ShowBook</servlet-name>
+        <url-pattern>/shop/ShowBook</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AddToCart</servlet-name>
+        <url-pattern>/shop/AddToCart</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ShowCart</servlet-name>
+        <url-pattern>/shop/ShowCart</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>UpdateCart</servlet-name>
+        <url-pattern>/shop/UpdateCart</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

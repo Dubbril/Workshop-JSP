@@ -27,6 +27,8 @@ public class UpdateCart extends HttpServlet {
         for (int i = 0; i < ids.length; i++) {
             if (!Utility.isNumber(amounts[i])) {
                 errors.put(Integer.parseInt(ids[i]), "เลขจำนวนเต็ม");
+            } else if (Integer.parseInt(amounts[i]) <= 0) {
+                errors.put(Integer.parseInt(ids[i]), "เลขบวก");
             }
         }
         if (errors.size() > 0) {

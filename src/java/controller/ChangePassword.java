@@ -18,13 +18,13 @@ public class ChangePassword extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
 
         String oldPassword = request.getParameter("old");
-        String newPassword = request.getParameter("new");
+        String newPassword = request.getParameter("New");
         String confirmPassword = request.getParameter("confirm");
 
         if (!newPassword.equals(confirmPassword)) {
             request.setAttribute("confirmIncorrect", "รหัสผ่านไม่ตรงกัน");
             RequestDispatcher rd;
-            rd = request.getRequestDispatcher("change_password.jsp");
+            rd = request.getRequestDispatcher("../member/change_password.jsp");
             rd.forward(request, response);
             return;
         }
@@ -39,11 +39,11 @@ public class ChangePassword extends HttpServlet {
             db.close();
         }
         if (oldMatch) {
-            response.sendRedirect("change_password_complete.jsp");
+            response.sendRedirect("change_password_completed.jsp");
         } else {
             request.setAttribute("oldIncorrect", "รหัสสมาชิก");
             RequestDispatcher rd;
-            rd = request.getRequestDispatcher("chage_password.jsp");
+            rd = request.getRequestDispatcher("change_password.jsp");
             rd.forward(request, response);
         }
 

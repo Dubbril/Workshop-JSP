@@ -7,13 +7,13 @@
         </td>
         <td align="right">
             <c:choose>
-                <c:when test="${empty number}">
+                <c:when test="${empty member}">
                     <a href="../member/login.jsp">ลงชื่อเข้าใช้</a>
                     <a href="../member/register.jsp">สมัครสมาชิก</a>
                     <a href="../member/forgot_password.jsp">ลืมรหัสผ่าน</a>
                 </c:when>
                 <c:otherwise>
-                    คุณ ${Number.name}
+                    คุณ ${member.name}
                     <a href="../member/change_password.jsp">เปลี่ยนรหัสผ่าน</a>
                     <a href="../member/Logout">ลงชื่อออก</a>
                 </c:otherwise>

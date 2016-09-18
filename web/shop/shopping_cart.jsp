@@ -56,15 +56,15 @@
                                        name="amount" 
                                        size="2" 
                                        style="text-align: right" 
-                                       value="<c:choose>
+                                       <c:choose>
                                            <c:when test="${not empty paramValues.amount}">
-                                               ${paramValues.amount[status.index]}
-                                           </c:when>
-                                           <c:otherwise>
-                                               ${item.amount}
-                                           </c:otherwise>
-                                       </c:choose>"
-                                       />
+                                               value="${paramValues.amount[status.index]}"
+                                       </c:when>
+                                       <c:otherwise>
+                                           value="${item.amount}"
+                                       </c:otherwise>
+                                </c:choose>
+                                />
                                 <input type="hidden" name="id" value="${item.id}" />
                                 <c:choose>
                                     <c:when test="${not empty errors[item.id]}">
@@ -77,7 +77,7 @@
                             </td>
                             <%-- ราคารวม --%>
                             <td align="right" >
-                                <fmt:formatNumber value="${item.price * item.amount}" pattern="#,###,00"/>
+                                <fmt:formatNumber value="${item.price * item.amount}" pattern="#,###.00"/>
                             </td>
                         </tr>
                     </c:forEach>

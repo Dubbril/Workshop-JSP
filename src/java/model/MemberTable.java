@@ -43,7 +43,7 @@ public class MemberTable {
     public void update(Member member) {
         String sql = "update member "
                 + " set username=?,password=?,name=?,address=?,"
-                + " email=?,activated=?activate_code=?,"
+                + " email=?,activated=?,activate_code=?,"
                 + " register_date=?"
                 + " where id=?";
         db.update(sql, member.getUsername(),

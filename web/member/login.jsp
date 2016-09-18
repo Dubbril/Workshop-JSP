@@ -4,7 +4,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>${initParam.showname} - ลงชื่อเข้าใช้</title>
+        <title>${initParam.shopname} - ลงชื่อเข้าใช้</title>
         <link rel="stylesheet" href="../css/view.css" type="text/css"/>
     </head>
     <body>
